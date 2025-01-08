@@ -7,6 +7,7 @@ Created a micro-frontend monorepo project for learning purposes using `Vite` and
 I created a blog about this project where I explained all aspects of micro-frontend, monorepo, module federation, and Vite configuration using Nx CLI.
 Feel free to check it out 🔥🔥.
 
+[🔥BLOG](https://dev.to/hxnain619/monorepo-and-micro-frontends-using-module-federation-vite-1e47)
 
 
 ## Run tasks
@@ -14,13 +15,13 @@ Feel free to check it out 🔥🔥.
 To run the dev server for your app, use:
 
 ```sh
-npm run build:all
+npm run preview:all
 ```
 
 To create a production bundle:
 
 ```sh
-npm run preview:all
+npm run build:all
 ```
 
 ## Add new projects
