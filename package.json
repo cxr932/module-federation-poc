@@ -2,10 +2,18 @@
   "name": "@my-monorepo/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:remote": "cd apps/remote_app && vite build",
+    "build:host": "cd apps/host-app && vite build",
+    "preview:host": "cd apps/host-app && vite preview --port 5000",
+    "preview:remote": "cd apps/remote_app && vite preview --port 5001 --strictPort",
+    "build:all": "concurrently 'npm run build:host' 'npm run build:remote'",
+    "preview:all": "concurrently 'npm run preview:host' 'npm run preview:remote'"
+  },
   "private": true,
   "dependencies": {
     "@module-federation/enhanced": "0.7.6",
+    "concurrently": "^9.1.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.11.2"

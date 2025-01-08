@@ -15,10 +15,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@my-monorepo/apps/host-app": ["apps/host-app/src/*"],
-      "@my-monorepo/apps/remote_app": ["apps/remote_app/src/*"],
-    }
+    "paths": {}
   },
   "exclude": ["node_modules", "tmp"]
 }

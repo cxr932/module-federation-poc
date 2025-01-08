@@ -56,12 +56,6 @@
         "style": "css",
         "linter": "eslint"
       }
-    },
-    "@nx/angular:application": {
-      "e2eTestRunner": "none",
-      "linter": "eslint",
-      "style": "css",
-      "unitTestRunner": "none"
     }
   },
   "projects": {
@@ -69,42 +63,15 @@
       "tags": [],
       "root": "apps/host-app"
     },
-    "my-remote-app": {
+    "remote_app": {
       "tags": [],
-      "root": "apps/my-remote-app"
+      "root": "apps/remote_app"
     }
   },
   "targetDefaults": {
     "build": {
       "cache": true,
       "dependsOn": ["^build"]
-    },
-    "@nx/webpack:webpack": {
-      "inputs": [
-        "production",
-        "^production",
-        {
-          "env": "NX_MF_DEV_REMOTES"
-        }
-      ],
-      "dependsOn": ["^build"],
-      "cache": true
-    },
-    "@angular-devkit/build-angular:browser": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
-    },
-    "@nx/angular:webpack-browser": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": [
-        "production",
-        "^production",
-        {
-          "env": "NX_MF_DEV_REMOTES"
-        }
-      ]
     }
   }
 }

@@ -3,19 +3,44 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import federation, { Shared } from '@originjs/vite-plugin-federation';
 
 export default defineConfig({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/apps/host-app',
   server: {
-    port: 4200,
+    port: 5000,
     host: 'localhost',
   },
   preview: {
-    port: 4300,
+    port: 5000,
     host: 'localhost',
   },
-  plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  },
+  plugins: [
+    react(),
+    federation({
+      name: 'host-app',
+      filename: 'remoteEntry.js',
+      remotes: {
+        remote_app: 'http://localhost:5001/assets/remoteEntry.js',
+      },
+      shared: {
+        react: {
+          singleton: true,
+          requiredVersion: '18.2.0',
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: '18.2.0',
+        },
+      } as Shared,
+    }),
+    nxViteTsPaths(),
+    nxCopyAssetsPlugin(['*.md']),
+  ],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
@@ -27,16 +52,6 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
-  },
-  test: {
-    watch: false,
-    globals: true,
-    environment: 'jsdom',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-    reporters: ['default'],
-    coverage: {
-      reportsDirectory: '../../coverage/apps/host-app',
-      provider: 'v8',
-    },
+    target: 'esnext',
   },
 });
