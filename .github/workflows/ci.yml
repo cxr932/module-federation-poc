@@ -23,11 +23,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       # Step 3: Install dependencies
-      - run: npm ci --legacy-peer-deps
-      # Adding an explicit `npm install` step
       - run: npm install
 
       # Step 4: Run Nx tasks
