@@ -52,3 +52,7 @@ To generate a new library, use:
 ```sh
 npx nx g @nx/react:lib mylib
 ```
+
+## Note
+after building, on `./dist/apps/remote_app/assets/remoteEntry.js` I have to change the federation path from `./assets/federation...` to `./federation...`.
+Got to find a way to config this into Vite.
