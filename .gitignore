@@ -2,6 +2,7 @@
 
 # compiled output
 dist
+.pnpm-store
 tmp
 out-tsc
 

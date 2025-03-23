@@ -7,6 +7,7 @@ Hey everyone! 👋
 I recently embarked on an exciting journey to learn and experiment with micro-frontend architecture by creating a monorepo project using Vite and the Nx CLI. The project showcases the power of module federation in modern web development.
 
 ### 🔍 What’s Covered in the Blog?
+
 In my blog, I dive deep into:
 
 **Micro-frontend architecture:** Understanding the "what" and "why" behind breaking down a large application into smaller, independently deployable pieces.
@@ -16,9 +17,11 @@ In my blog, I dive deep into:
 A detailed walkthrough of how I combined these tools to create a robust and scalable micro-frontend monorepo.
 
 ### 💡 Why This Matters?
+
 Micro-frontends are revolutionizing how we think about scalability, maintainability, and collaboration in front-end development. Pairing this with modern tools like Nx CLI and Vite makes development faster and more enjoyable.
 
 ### 📖 Check Out the Blog
+
 I’ve explained each concept with practical examples and included all the configuration details to help you get started. Whether you're a beginner or an experienced developer looking to explore micro-frontends, you’ll find valuable insights.
 
 👉 [Read the Blog Here](https://dev.to/hxnain619/monorepo-and-micro-frontends-using-module-federation-vite-1e47)
@@ -30,13 +33,13 @@ Let me know your thoughts or if you have any questions! Would love to hear your 
 To run the dev server for your app, use:
 
 ```sh
-npm run preview:all
+pnpm run preview:all
 ```
 
 To create a production bundle:
 
 ```sh
-npm run build:all
+pnpm run build:all
 ```
 
 ## Add new projects
@@ -52,7 +55,3 @@ To generate a new library, use:
 ```sh
 npx nx g @nx/react:lib mylib
 ```
-
-## Note
-after building, on `./dist/apps/remote_app/assets/remoteEntry.js` I have to change the federation path from `./assets/federation...` to `./federation...`.
-Got to find a way to config this into Vite.
