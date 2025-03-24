@@ -13,25 +13,25 @@ permissions:
 jobs:
   main:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20]
     steps:
-      # Step 1: Checkout the code
       - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          fetch-depth: 0
+          version: 10
 
-      # Step 2: Setup Node.js
-      - uses: actions/setup-node@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: pnpm
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
 
-      # Step 3: Install pnpm manually
-      - run: npm install -g pnpm
-      - run: pnpm --version # Verify pnpm is installed
+      - name: Install dependencies
+        run: pnpm install
 
-      # Step 4: Install dependencies
-      - run: pnpm install
-
-      # Step 5: Run Nx tasks
+      - name: Run Nx Tasks
       - uses: nrwl/nx-set-shas@v4
       - run: pnpm nx affected -t lint test build
