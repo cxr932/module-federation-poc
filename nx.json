@@ -1,6 +1,5 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "target": {},
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
@@ -14,6 +13,9 @@
       "!{projectRoot}/eslint.config.cjs"
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+  },
+  "cli": {
+    "packageManager": "pnpm"
   },
   "nxCloudId": "677c678b332c815be6944fc6",
   "plugins": [
