@@ -19,17 +19,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Step 2: Setup Node.js and enable pnpm
+      # Step 2: Setup Node.js
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
 
-      # Step 3: Enable and install pnpm correctly
-      - run: corepack enable
-      - run: corepack prepare pnpm@latest --activate
+      # Step 3: Install pnpm manually
+      - run: npm install -g pnpm
+      - run: pnpm --version # Verify pnpm is installed
 
-      # Step 4: Install dependencies using pnpm
+      # Step 4: Install dependencies
       - run: pnpm install
 
       # Step 5: Run Nx tasks
