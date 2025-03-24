@@ -19,18 +19,19 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Step 2: Setup Node.js and pnpm caching
+      # Step 2: Setup Node.js and enable pnpm
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
 
-      # Enable pnpm via corepack
+      # Step 3: Enable and install pnpm correctly
       - run: corepack enable
+      - run: corepack prepare pnpm@latest --activate
 
-      # Step 3: Install dependencies using pnpm
+      # Step 4: Install dependencies using pnpm
       - run: pnpm install
 
-      # Step 4: Run Nx tasks
+      # Step 5: Run Nx tasks
       - uses: nrwl/nx-set-shas@v4
       - run: pnpm nx affected -t lint test build
