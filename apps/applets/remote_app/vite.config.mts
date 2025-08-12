@@ -7,7 +7,7 @@ import federation, { Shared } from '@originjs/vite-plugin-federation';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/remote_app',
+  cacheDir: '../../../node_modules/.vite/apps/remote_app',
   server: {
     port: 5001,
     host: 'localhost',
@@ -28,6 +28,7 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       exposes: {
         './App': './src/app/app.tsx',
+        './App2': './src/app2/app.tsx',
       },
       shared: {
         react: {
@@ -48,7 +49,7 @@ export default defineConfig({
   //  plugins: [ nxViteTsPaths() ],
   // },
   build: {
-    outDir: '../../dist/apps/remote_app',
+    outDir: '../dist/remote_app',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {

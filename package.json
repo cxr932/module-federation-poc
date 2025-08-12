@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build:remote": "cd apps/remote_app && vite build",
-    "build:host": "cd apps/host-app && vite build",
-    "preview:host": "cd apps/host-app && vite preview --port 5000",
-    "preview:remote": "cd apps/remote_app && vite preview --port 5001 --strictPort",
+    "build:remote": "cd apps/applets/remote_app && vite build",
+    "build:host": "cd apps/applets/host-app && vite build",
+    "preview:host": "cd apps/applets/host-app && vite preview --port 5000",
+    "preview:remote": "cd apps/applets/remote_app && vite preview --port 5001 --strictPort",
     "build:all": "concurrently 'npm run build:host' 'npm run build:remote'",
     "preview:all": "concurrently 'npm run preview:host' 'npm run preview:remote'"
   },
