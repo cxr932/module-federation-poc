@@ -20,7 +20,7 @@ import { init, loadRemote } from '@module-federation/enhanced/runtime'
 await init({
   name: 'applets-remote',
   remotes: [
-    { name: 'prism-applets', entry: 'http://localhost:5001/assets/remoteEntry.js' }
+    { name: 'prism-applets', entry: 'http://localhost:5001/assets/all-prism-applets.js' }
     // ...
   ]
 })
