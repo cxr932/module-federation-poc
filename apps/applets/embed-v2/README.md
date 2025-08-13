@@ -74,3 +74,6 @@ Then, somewhere on the internet...
 ```
 
 
+References:
+- [⚠️ Module Federation registration at runtime](https://module-federation.io/guide/basic/runtime/runtime#module-registration)
+  - Make sure you choose the "pure runtime" options here, not the "build plugin" options
