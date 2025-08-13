@@ -30,6 +30,12 @@ Let me know your thoughts or if you have any questions! Would love to hear your 
 
 ## Guide to run the Project
 
+Install dependencies using:
+
+```shell
+pnpm install
+```
+
 To run the dev server for your app, use:
 
 ```sh

@@ -1,5 +1,5 @@
 {
-  "name": "@my-monorepo/source",
+  "name": "module-federation-poc",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
