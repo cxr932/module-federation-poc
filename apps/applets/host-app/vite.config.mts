@@ -22,28 +22,30 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'host-app',
-      // filename
-      filename: 'zong.js',
+      /**
+       * This is how a Real Application (assembled with vite, webpack, etc) could include our applets as
+       * "Official" remote modules without having to install them as npm packages.
+       * This is less of our focus than embed-v2 since we need facets to fill that embed role, but it's still
+       * important to understand how we can use it going forward.
+       */
+      name: 'random-host-app-including-this-like-a-module',
       remotes: {
-        // this is the name of the module that the app can internally import from... it's created here
-        // there's a matching generic type for it in src/type.d.ts that matches this name as well
-        // it should match the name in the remote app's vite.config.mts
-        // some things use "app_name@http://blablabla/remoteEntry.js"... what's up with that? "module specifier"?
-        remote_app: 'http://localhost:5001/assets/remoteEntry.js',
+        // this is the name of the module that the app can internally import from... it's defined here
+        // this whole host application will be able to refer to is as `prism_applets/*`
+        prism_applets: 'http://localhost:5001/assets/all-prism-applets.js',
       },
       // This bit is not necessary for the host app, but it's here to show how you can share dependencies
       // with the remote app. If you want to share dependencies, uncomment this section.
-      shared: {
-        react: {
-          singleton: true,
-          requiredVersion: '18.2.0',
-        },
-        'react-dom': {
-          singleton: true,
-          requiredVersion: '18.2.0',
-        },
-      } as Shared,
+      // shared: {
+      //   react: {
+      //     singleton: true,
+      //     requiredVersion: '18.2.0',
+      //   },
+      //   'react-dom': {
+      //     singleton: true,
+      //     requiredVersion: '18.2.0',
+      //   },
+      // } as Shared,
     }),
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),

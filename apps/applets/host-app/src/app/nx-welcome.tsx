@@ -431,8 +431,8 @@ export function NxWelcome({ title }: { title: string }) {
         <div className="container">
           <div id="welcome">
             <h1>
-              <span> Hello there, </span>
-              Welcome {title} 👋
+              <span>This is:</span>
+              {title}
             </h1>
           </div>
 

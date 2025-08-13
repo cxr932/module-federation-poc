@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import App from './app/app';
-import App2 from './app2/app';
+import ColorVisualizer from './color-visualizer/app';
+import ColorWall from './color-wall/app';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,8 +9,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <App />
-    <hr />
-    <App2 />
+    <h1>This is the remote app's own internal application. It's embedding 2 of its applets here:</h1>
+    <div style={{ 'border': '5px dotted red', 'padding': '10px' }}>
+      <ColorVisualizer />
+      <ColorWall />
+    </div>
   </StrictMode>
 );

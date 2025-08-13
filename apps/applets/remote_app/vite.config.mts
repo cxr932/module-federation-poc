@@ -24,11 +24,11 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'remote_app',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './App': './src/app/app.tsx',
-        './App2': './src/app2/app.tsx',
+      name: 'prism-applets', // <-- this gets used in the filenames of all the generated chunks (other than the main one, which uses filename below)
+      filename: 'all-prism-applets.js', // <-- filename of the main chunk. this is ~equivalent to facets' manifest file (inserted into facets' embed.js) containing the chunk dependency graph
+      exposes: { // <-- each `exposes` entry is an applet/facet which can be imported by a host using this name, just like any other module
+        './ColorVisualizer': './src/color-visualizer/app.tsx',
+        './ColorWall': './src/color-wall/app.tsx',
       },
       shared: {
         react: {

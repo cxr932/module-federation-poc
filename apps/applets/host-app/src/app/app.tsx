@@ -3,20 +3,23 @@ import React, { Suspense } from 'react';
 import NxWelcome from './nx-welcome';
 import './app.module.css';
 
-const RemoteComponent = React.lazy(() => import('remote_app/App'));
-const RemoteComponent2 = React.lazy(() => import('remote_app/App2'));
+// note here how we're importing from 'prism_applets/*', just like we defined in the host app's vite config
+const ColorVisualizer = React.lazy(() => import('prism_applets/ColorVisualizer'));
+const ColorWall = React.lazy(() => import('prism_applets/ColorWall'));
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="host-app" />
-      <Suspense fallback={<>Loading....</>}>
-        <RemoteComponent2 />
-      </Suspense>
+      <NxWelcome title="random host application" />
+      <div style={{ 'border': '5px solid blue', 'padding': '10px' }}>
+        <Suspense fallback={<>Loading....</>}>
+          <ColorVisualizer subtitle={'loaded from host app'} />
+        </Suspense>
 
-      <Suspense fallback={<>Loading....</>}>
-        <RemoteComponent />
-      </Suspense>
+        <Suspense fallback={<>Loading....</>}>
+          <ColorWall subtitle={'loaded from host app'} />
+        </Suspense>
+      </div>
 
     </div>
   );

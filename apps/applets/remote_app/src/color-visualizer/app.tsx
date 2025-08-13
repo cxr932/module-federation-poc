@@ -2,10 +2,10 @@
 import styles from './app.module.css';
 import NxWelcome from './nx-welcome';
 
-export function App() {
+export function App({ subtitle = '' }) {
   return (
-    <div>
-      <NxWelcome title="remote_app 2" />
+    <div style={{ 'border': '2px dotted red', 'padding': '10px' }}>
+      <NxWelcome title={`Color Visualizer ${subtitle}`} />
     </div>
   );
 }
