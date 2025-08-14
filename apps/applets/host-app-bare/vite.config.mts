@@ -11,11 +11,11 @@ export default defineConfig({
   root: __dirname,
   cacheDir: '../../../node_modules/.vite/apps/host-app-bare',
   server: {
-    port: 5099,
+    port: 5000,
     host: 'localhost',
   },
   preview: {
-    port: 5099,
+    port: 5000,
     host: 'localhost',
   },
   optimizeDeps: {
@@ -52,6 +52,12 @@ export default defineConfig({
   // },
   build: {
     outDir: '../dist/host-app-bare',
+    manifest: true,
+    emptyOutDir: true,
+    reportCompressedSize: true,
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
     // lib: {
     //   entry: ['./src/mod.ts'],
     //   name: 'embed-poc-host-app-bare',
@@ -65,15 +71,10 @@ export default defineConfig({
     //     // },
     //   },
     // },
-    manifest: true,
-    emptyOutDir: true,
-    reportCompressedSize: true,
-    commonjsOptions: {
-      transformMixedEsModules: true,
-    },
     // we should try to target es2017 here, but we need a polyfill for top level await
     // using chrome89 (same as remote) in the meantime
     // target: 'chrome89',
     target: 'esnext',
+    minify: false // for testing purposes, we want to see the output without minification
   },
 });
