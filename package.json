@@ -5,14 +5,17 @@
   "scripts": {
     "build:remote": "cd apps/applets/remote_app && vite build",
     "build:host": "cd apps/applets/host-app && vite build",
+    "build:host-bare": "cd apps/applets/host-app-bare && vite build",
     "preview:host": "cd apps/applets/host-app && vite preview --port 5000",
+    "preview:host-bare": "cd apps/applets/host-app-bare && vite preview --port 5099",
     "preview:remote": "cd apps/applets/remote_app && vite preview --port 5001 --strictPort",
-    "build:all": "concurrently 'npm run build:host' 'npm run build:remote'",
-    "preview:all": "concurrently 'npm run preview:host' 'npm run preview:remote'"
+    "build:all": "concurrently 'npm run build:remote' 'npm run build:host-bare'",
+    "preview:all": "concurrently 'npm run preview:remote' 'npm run preview:host-bare'"
   },
   "private": true,
   "dependencies": {
     "@module-federation/enhanced": "0.7.6",
+    "@module-federation/vite": "^1.7.1",
     "concurrently": "^9.1.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",

@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import federation, { Shared } from '@originjs/vite-plugin-federation';
+// @ts-expect-error TS doesn't like this import, but it works
+import { dependencies } from '../../../package.json'
 
 export default defineConfig({
   root: __dirname,
@@ -18,9 +20,9 @@ export default defineConfig({
     host: 'localhost',
     cors: true,
   },
-  optimizeDeps: {
-    include: ['react', 'react-dom'],
-  },
+  // optimizeDeps: {
+  //   include: ['react', 'react-dom'],
+  // },
   plugins: [
     react(),
     federation({
@@ -33,11 +35,11 @@ export default defineConfig({
       shared: {
         react: {
           singleton: true,
-          requiredVersion: '18.2.0',
+          requiredVersion: dependencies.react,
         },
         'react-dom': {
           singleton: true,
-          requiredVersion: '18.2.0',
+          requiredVersion: dependencies['react-dom'],
         },
       } as Shared,
     }),
@@ -50,11 +52,14 @@ export default defineConfig({
   // },
   build: {
     outDir: '../dist/remote_app',
+    manifest: true,
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
     },
-    target: 'esnext',
+    // we'll likely need a second config that builds to an es2018 target
+    // target: 'chrome89', // not "esnext" because we need to support older browsers like Safari 14
+    target: 'esnext', // not "esnext" because we need to support older browsers like Safari 14
   },
 });
